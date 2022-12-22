@@ -1,0 +1,25 @@
+<form class="registration-form" [formGroup]="form">
+    <div class="registration-field" *ngFor="let field of fields; let index = index;">
+        <p class="registration-field-label">{{field.label}}</p>
+        <div class="registration-field-value">
+            <input [formControl]="controls[field.name]"
+                   [type]="field.type"
+                   #inputElements>
+            <ng-container *ngIf="field.type == passwordType">
+                <input type="checkbox" (click)="showPassword(index)">
+                Show Password
+            </ng-container>
+            <div *ngIf="controls[field.name].invalid && controls[field.name].errors &&
+                (controls[field.name].dirty || controls[field.name].touched)">
+                <p class="validation-message"
+                   *ngIf="controls[field.name].hasError('required')">{{field.label}} is required</p>
+                <p class="validation-message"
+                   *ngIf="field.validations?.length && !controls[field.name].hasError('required')">
+                    {{controls[field.name].errors | firstErrorMessage: field.validations}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="registration-form-button">
+        <button (click)="onRegistrate()" [disabled]="!form.valid">submit</button>
+    </div>
+</form>

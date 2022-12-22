@@ -1,0 +1,19 @@
+.registration-form {
+  padding: 40px;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.validation-message {
+  color: red;
+}
+
+.registration-form-button {
+  margin-top: 40px;
+
+  button {
+    padding: 10px;
+  }
+}
